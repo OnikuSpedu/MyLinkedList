@@ -2,7 +2,7 @@ public class Driver {
     public static void main(String[] args) {
         Node n = new Node("1");
         System.out.println(n.getData());
-        
+
         MyLinkedList l = new MyLinkedList();
         l.add("0");
         l.add("2");
@@ -13,9 +13,7 @@ public class Driver {
         System.out.println(l.get(3));
         l.set(0, "zero");
         l.add(0, "-1");
+        l.add(0, "-2");
         System.out.println(l);
-        
-
-        
     }
 }

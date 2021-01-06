@@ -1,9 +1,9 @@
-public class MyLinkedList{
+public class MyLinkedList {
 
     private int size;
-    private Node start,end;  
+    private Node start, end;
 
-    public MyLinkedList(){
+    public MyLinkedList() {
         this.size = 0;
         this.start = null;
         this.end = null;
@@ -47,23 +47,31 @@ public class MyLinkedList{
                 newNode.setPrev(prev);
                 prev.setNext(newNode);
                 next.setPrev(newNode);
-                    
+
                 this.size++;
             }
         } else {
             throw new IndexOutOfBoundsException();
         }
-        
+
     }
 
     public String get(int index) {
-        return retrieveNode(index).getData();
+        if (index >= 0 && index <= size()) {
+            return retrieveNode(index).getData();
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     public String set(int index, String value) {
-        Node n = retrieveNode(index);
-        n.setData(value);
-        return n.getData();
+        if (index >= 0 && index <= size()) {
+            Node n = retrieveNode(index);
+            n.setData(value);
+            return n.getData();
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     public String toString() {
@@ -71,13 +79,15 @@ public class MyLinkedList{
         String output = "";
         for (int i = 0; i < size(); i++) {
             output += current.getData();
-            if(i < size() - 1) { output += ", "; }
+            if (i < size() - 1) {
+                output += ", ";
+            }
             Node n = current.getNext();
-            current = n;  
+            current = n;
         }
         return output;
     }
-    
+
     private Node retrieveNode(int index) {
         if (index >= 0 && index < size()) {
             Node current = this.start;
@@ -87,7 +97,7 @@ public class MyLinkedList{
             return current;
         } else {
             throw new IndexOutOfBoundsException();
-        }      
+        }
     }
 
 }
