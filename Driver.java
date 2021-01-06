@@ -1,0 +1,16 @@
+public class Driver {
+    public static void main(String[] args) {
+        Node n = new Node("1");
+        System.out.println(n.getData());
+        
+        MyLinkedList l = new MyLinkedList();
+        l.add("0");
+        l.add("2");
+        l.add("3");
+        System.out.println(l);
+        l.add(1, "1");
+        System.out.println(l);
+        System.out.println(l.retrieveNode(0).getData());
+        
+    }
+}

@@ -5,6 +5,8 @@ public class Node{
     
     public Node(String value){
         data = value;
+        next = null;
+        prev = null;
     }
     
     public String getData() {
@@ -24,5 +26,11 @@ public class Node{
     }
     public void setPrev(Node n) {
         this.prev = n;
+    }
+
+    public void info() {
+        System.out.println("Data: "+ getData());
+        System.out.println(getNext());
+        System.out.println(getPrev());
     }
 }

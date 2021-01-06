@@ -28,26 +28,66 @@ public class MyLinkedList{
         return true;
     }
 
-    public boolean add(int index, String value) {
+    public void add(int index, String value) {
         if (index >= 0 && index <= size()) {
             if (index == 0) {
                 Node n = new Node(value);
                 n.setNext(this.start);
+                this.start.setPrev(n);
+                this.start = n;
+                this.size++;
             } else if (index == size()) {
                 add(value);
             } else {
+                Node newNode = new Node(value);
+                Node next = retrieveNode(index);
+                Node prev = next.getPrev();
 
+                newNode.setNext(next);
+                newNode.setPrev(prev);
+                prev.setNext(newNode);
+                next.setPrev(newNode);
+                    
+                this.size++;
             }
-
-            return true;
         } else {
             throw new IndexOutOfBoundsException();
         }
         
     }
 
-    public String get(int index);
-    public String set(int index, String value);
-    public String toString();
-    //Any helper method that returns a Node object MUST BE PRIVATE!
+    public String get(int index) {
+        return retrieveNode(index).getData();
+    }
+
+    public String set(int index, String value) {
+        Node n = retrieveNode(index);
+        n.setData(value);
+        return n.getData();
+    }
+
+    public String toString() {
+        Node current = this.start;
+        String output = "";
+        for (int i = 0; i < size(); i++) {
+            output += current.getData();
+            if(i < size() - 1) { output += ", "; }
+            Node n = current.getNext();
+            current = n;  
+        }
+        return output;
+    }
+    
+    public Node retrieveNode(int index) {
+        if (index >= 0 && index < size()) {
+            Node current = this.start;
+            for (int i = 0; i < index; i++) {
+                current = current.getNext();
+            }
+            return current;
+        } else {
+            throw new IndexOutOfBoundsException();
+        }      
+    }
+
 }
