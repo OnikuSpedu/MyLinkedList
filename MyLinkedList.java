@@ -78,7 +78,7 @@ public class MyLinkedList{
         return output;
     }
     
-    public Node retrieveNode(int index) {
+    private Node retrieveNode(int index) {
         if (index >= 0 && index < size()) {
             Node current = this.start;
             for (int i = 0; i < index; i++) {

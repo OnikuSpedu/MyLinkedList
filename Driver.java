@@ -10,7 +10,12 @@ public class Driver {
         System.out.println(l);
         l.add(1, "1");
         System.out.println(l);
-        System.out.println(l.retrieveNode(0).getData());
+        System.out.println(l.get(3));
+        l.set(0, "zero");
+        l.add(0, "-1");
+        System.out.println(l);
+        
+
         
     }
 }
