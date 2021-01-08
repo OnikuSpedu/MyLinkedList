@@ -101,7 +101,7 @@ public class MyLinkedList {
         }
         return output;
     }
-    
+
     private Node retrieveNode(int index) {
         if (index >= 0 && index < size()) {
             Node current = this.start;
@@ -109,6 +109,32 @@ public class MyLinkedList {
                 current = current.getNext();
             }
             return current;
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    public String remove(int index) {
+        if (index >= 0 && index <= size()) {
+            if (index == 0) {
+                String output = this.start.getData();
+                if (size() == 1) {
+                    this.start = null;
+                    this.end = null;
+                } else {
+                    Node n = start.getNext();
+                    this.start.setNext(null);
+                    n.setPrev(null);
+                    this.start = n;
+                }
+                this.size--;
+                return output;
+            } else if (index == size()) {
+                
+            } else {
+                
+                this.size--;
+            }
         } else {
             throw new IndexOutOfBoundsException();
         }
