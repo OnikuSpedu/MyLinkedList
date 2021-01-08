@@ -88,6 +88,20 @@ public class MyLinkedList {
         return output;
     }
 
+    public String toStringReversed() {
+        Node current = this.end;
+        String output = "";
+        for (int i = 0; i < size(); i++) {
+            output += current.getData();
+            if (i < size() - 1) {
+                output += ", ";
+            }
+            Node n = current.getPrev();
+            current = n;
+        }
+        return output;
+    }
+    
     private Node retrieveNode(int index) {
         if (index >= 0 && index < size()) {
             Node current = this.start;
@@ -99,5 +113,4 @@ public class MyLinkedList {
             throw new IndexOutOfBoundsException();
         }
     }
-
 }
