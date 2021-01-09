@@ -115,26 +115,40 @@ public class MyLinkedList {
     }
 
     public String remove(int index) {
-        if (index >= 0 && index <= size()) {
-            if (index == 0) {
-                String output = this.start.getData();
-                if (size() == 1) {
-                    this.start = null;
-                    this.end = null;
-                } else {
-                    Node n = start.getNext();
-                    this.start.setNext(null);
-                    n.setPrev(null);
-                    this.start = n;
-                }
-                this.size--;
-                return output;
-            } else if (index == size()) {
-                
+        if (index >= 0 && index < size()) {
+            String output = "";
+            if (size() == 1) {
+                output = this.start.getData();
+                this.start = null;
+                this.end = null;
+            } else if (index == 0) {
+                output = this.start.getData();
+                this.start.setData(null);
+                Node n = start.getNext();
+                this.start.setNext(null);
+                n.setPrev(null);
+                this.start = n;
+            } else if (index == size() - 1) {
+                output = this.end.getData();
+                this.end.setData(null);
+                Node n = end.getPrev();
+                this.end.setPrev(null);
+                n.setNext(null);
+                this.end = n;
             } else {
-                
-                this.size--;
+                Node removedNode = retrieveNode(index);
+                output = removedNode.getData();
+                Node pNode = removedNode.getPrev();
+                Node nNode = removedNode.getNext();
+                pNode.setNext(nNode);
+                nNode.setPrev(pNode);
+                removedNode.setPrev(null);
+                removedNode.setNext(null);
+                removedNode.setData(null);
             }
+
+            this.size--;
+            return output;
         } else {
             throw new IndexOutOfBoundsException();
         }
