@@ -1,8 +1,9 @@
-public class Driver {
+public class Tester {
     public static void main(String[] args) {
-        Node n = new Node("1");
-        System.out.println(n.getData());
-
+        personalTests();
+    }
+    
+    public static void personalTests() {
         MyLinkedList l = new MyLinkedList();
         MyLinkedList la = new MyLinkedList();
         MyLinkedList lb = new MyLinkedList();
@@ -98,3 +99,4 @@ public class Driver {
         System.out.println(le.toStringReversed());
     }
 }
+    

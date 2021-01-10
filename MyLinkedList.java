@@ -76,7 +76,7 @@ public class MyLinkedList {
 
     public String toString() {
         Node current = this.start;
-        String output = "";
+        String output = "[";
         for (int i = 0; i < size(); i++) {
             output += current.getData();
             if (i < size() - 1) {
@@ -85,12 +85,13 @@ public class MyLinkedList {
             Node n = current.getNext();
             current = n;
         }
+        output += "]";
         return output;
     }
 
     public String toStringReversed() {
         Node current = this.end;
-        String output = "";
+        String output = "[";
         for (int i = 0; i < size(); i++) {
             output += current.getData();
             if (i < size() - 1) {
@@ -99,6 +100,7 @@ public class MyLinkedList {
             Node n = current.getPrev();
             current = n;
         }
+        output += "]";
         return output;
     }
 
@@ -151,6 +153,45 @@ public class MyLinkedList {
             return output;
         } else {
             throw new IndexOutOfBoundsException();
+        }
+    }
+
+    public void reset() {
+        this.start = null;
+        this.end = null;
+        this.size = 0;
+    }
+
+    public Node getStart() {
+        return start;
+    }
+
+    public Node getEnd() {
+        return end;
+    }
+
+    /*
+    *@postcondition: All of the elements from other are removed from the other, and connected to the end of this linked list.
+    *@postcondition: The size of other is reduced to 0.
+    *@postcondition: The size of this is now the combined sizes of both original lists
+    */
+    public void extend(MyLinkedList other){
+        
+        if (other.size > 0) {
+            Node otherStart = other.getStart();
+            Node otherEnd = other.getEnd();
+            if (size == 0) {
+                this.start = otherStart;
+                this.end = otherEnd;
+                this.size = other.size();
+            }
+            else {
+                this.end.setNext(otherStart);
+                otherStart.setPrev(this.end);
+                this.end = otherEnd;
+                this.size += other.size();
+            }
+            other.reset();
         }
     }
 }
