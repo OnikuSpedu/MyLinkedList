@@ -106,11 +106,19 @@ public class MyLinkedList {
 
     private Node retrieveNode(int index) {
         if (index >= 0 && index < size()) {
-            Node current = this.start;
-            for (int i = 0; i < index; i++) {
-                current = current.getNext();
+            if (index < size() / 2 ) {
+                Node current = this.start;
+                for (int i = 0; i < index; i++) {
+                    current = current.getNext();
+                }
+                return current;
+            } else {
+                Node current = this.end;
+                for (int i = size() - 1; i > index; i--) {
+                    current = current.getPrev();
+                }
+                return current;
             }
-            return current;
         } else {
             throw new IndexOutOfBoundsException();
         }
